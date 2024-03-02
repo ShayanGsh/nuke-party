@@ -112,3 +112,11 @@ Thumbs.db
 /ios/xcode/native/
 /ios/IOSLauncher.app
 /ios/IOSLauncher.app.dSYM
+
+#VSCode
+
+.vscode/
+
+#Fleet
+
+.fleet/
