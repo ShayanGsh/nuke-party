@@ -32,6 +32,7 @@ public class PerlinMapGenerator {
     }
 
     public PerlinMapGenerator setTileset(Texture tileSet, int width, int height) {
+        tileSet.setFilter(Texture.TextureFilter.Nearest, Texture.TextureFilter.Nearest);
         this.splitTiles = TextureRegion.split(tileSet, width, height);
         return this;
     }
