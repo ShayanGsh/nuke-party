@@ -20,25 +20,25 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.TimeUtils;
+import dev.gash.game.controller.OrthoCamController;
 import dev.gash.game.map.PerlinMapGenerator;
 
 public class Game extends ApplicationAdapter {
-	private Texture dropImage;
-	private Texture bucketImage;
 	private SpriteBatch batch;
 	private OrthographicCamera camera;
 	private TiledMap map;
 	private MapRenderer mapRenderer;
+	private OrthoCamController cameraController;
+
 
 	@Override
 	public void create() {
-		// load the images for the droplet and the bucket, 64x64 pixels each
-		dropImage = new Texture(Gdx.files.internal("badlogic.jpg"));
-		bucketImage = new Texture(Gdx.files.internal("badlogic.jpg"));
 
 		// create the camera and the SpriteBatch
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false, 1366, 768);
+		cameraController = new OrthoCamController(camera);
+		Gdx.input.setInputProcessor(cameraController);
 		batch = new SpriteBatch();
 
 		map = new PerlinMapGenerator(200, 200)
@@ -49,13 +49,13 @@ public class Game extends ApplicationAdapter {
 
 	@Override
 	public void render() {
-//		// process user input
-//		if(Gdx.input.isTouched()) {
-//			Vector3 touchPos = new Vector3();
-//			touchPos.set(Gdx.input.getX(), Gdx.input.getY(), 0);
-//			camera.unproject(touchPos);
-//			bucket.x = touchPos.x - (float) 64 / 2;
-//		}
+		// process user input
+		if(Gdx.input.isTouched()) {
+			Vector3 touchPos = new Vector3();
+			touchPos.set(Gdx.input.getX(), Gdx.input.getY(), 0);
+			camera.unproject(touchPos);
+		}
+
 
 		ScreenUtils.clear(Color.valueOf("#4f42b5 "));
 		camera.update();
@@ -66,9 +66,7 @@ public class Game extends ApplicationAdapter {
 
 	@Override
 	public void dispose() {
-		// dispose of all the native resources
-		dropImage.dispose();
-		bucketImage.dispose();
 		batch.dispose();
+		map.dispose();
 	}
 }
