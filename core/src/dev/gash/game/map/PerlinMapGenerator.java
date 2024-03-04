@@ -18,6 +18,7 @@ public class PerlinMapGenerator {
     float amplitude = 0.5f;
     long seed = random.nextLong();
     TextureRegion[][] splitTiles;
+
     public PerlinMapGenerator(int width, int height) {
         this.width = width;
         this.height = height;
@@ -57,7 +58,7 @@ public class PerlinMapGenerator {
         return this;
     }
 
-    public TiledMap generate() {
+    public TiledMap generate(TileSelector selector) {
         if (splitTiles == null) {
             throw new RuntimeException("Tileset not set");
         }
@@ -73,11 +74,7 @@ public class PerlinMapGenerator {
                 TiledMapTileLayer.Cell cell = new TiledMapTileLayer.Cell();
                 float noise = noiseGrid[i][j];
 
-                if (noise < 0.5) {
-                    cell.setTile(new StaticTiledMapTile(splitTiles[0][1]));
-                } else {
-                    cell.setTile(new StaticTiledMapTile(splitTiles[0][0]));
-                }
+                cell.setTile(selector.select(noise));
 
                 groundLayer.setCell(i, j, cell);
             }

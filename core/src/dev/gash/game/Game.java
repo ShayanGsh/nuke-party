@@ -14,6 +14,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.MapRenderer;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.maps.tiled.tiles.StaticTiledMapTile;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
@@ -22,6 +23,7 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.TimeUtils;
 import dev.gash.game.controller.OrthoCamController;
 import dev.gash.game.map.PerlinMapGenerator;
+import dev.gash.game.map.TileSelector;
 
 public class Game extends ApplicationAdapter {
 	private SpriteBatch batch;
@@ -61,7 +63,6 @@ public class Game extends ApplicationAdapter {
 		camera.update();
 		mapRenderer.setView(camera);
 		mapRenderer.render();
-
 	}
 
 	@Override
