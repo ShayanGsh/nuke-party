@@ -17,7 +17,6 @@ public class PerlinMapGenerator {
     int octaveCount = 4;
     float amplitude = 0.5f;
     long seed = random.nextLong();
-    TextureRegion[][] splitTiles;
 
     public PerlinMapGenerator(int width, int height) {
         this.width = width;
@@ -30,17 +29,6 @@ public class PerlinMapGenerator {
         this.octaveCount = octaveCount;
         this.amplitude = amplitude;
         this.seed = seed;
-    }
-
-    public PerlinMapGenerator setTileset(Texture tileSet, int width, int height) {
-        tileSet.setFilter(Texture.TextureFilter.Nearest, Texture.TextureFilter.Nearest);
-        this.splitTiles = TextureRegion.split(tileSet, width, height);
-        return this;
-    }
-
-    public PerlinMapGenerator setTileset(TextureRegion[][] splitTiles) {
-        this.splitTiles = splitTiles;
-        return this;
     }
 
     public PerlinMapGenerator setOctaveCount(int octaveCount) {
@@ -59,9 +47,7 @@ public class PerlinMapGenerator {
     }
 
     public TiledMap generate(TileSelector selector) {
-        if (splitTiles == null) {
-            throw new RuntimeException("Tileset not set");
-        }
+
         TiledMap map = new TiledMap();
         MapLayers layers = map.getLayers();
 

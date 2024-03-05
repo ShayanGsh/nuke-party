@@ -24,6 +24,7 @@ import com.badlogic.gdx.utils.TimeUtils;
 import dev.gash.game.controller.OrthoCamController;
 import dev.gash.game.map.PerlinMapGenerator;
 import dev.gash.game.map.TileSelector;
+import dev.gash.game.map.layers.GroundLayer;
 
 public class Game extends ApplicationAdapter {
 	private SpriteBatch batch;
@@ -44,8 +45,7 @@ public class Game extends ApplicationAdapter {
 		batch = new SpriteBatch();
 
 		map = new PerlinMapGenerator(200, 200)
-				.setTileset(new Texture(Gdx.files.internal("map_ground_texture.png")), 32, 32)
-				.generate();
+				.generate(new GroundLayer());
 		mapRenderer = new OrthogonalTiledMapRenderer(map);
 	}
 
