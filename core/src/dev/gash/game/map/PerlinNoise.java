@@ -1,4 +1,5 @@
 package dev.gash.game.map;
+
 import java.util.Random;
 
 public class PerlinNoise {
@@ -30,10 +31,10 @@ public class PerlinNoise {
             perlinNoise = addNoise(perlinNoise, generateSmoothNoise(baseNoise, i), amplitude);
         }
 
-        // Normalize the Perlin noise values so that they are between 0 and 1
+        // Normalize the Perlin noise values so that they are between -1 and 1
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < height; j++) {
-                perlinNoise[i][j] /= totalAmplitude;
+                perlinNoise[i][j] = (perlinNoise[i][j] / totalAmplitude - 0.5f) * 2;
             }
         }
 
