@@ -27,15 +27,15 @@ public class GroundLayer implements TileSelector {
 
     @Override
     public StaticTiledMapTile select(float noise) {
-        if (noise < -0.5) {
-            return GroundTileDictionary.getTile(GroundTileDictionary.SEA, splitTiles);
-        } else if (noise < -0.3) {
+        if (noise < -0.1) {
             return GroundTileDictionary.getTile(GroundTileDictionary.OCEAN, splitTiles);
-        } else if (noise < -0.1) {
+        } else if (noise < 0) {
+            return GroundTileDictionary.getTile(GroundTileDictionary.SEA, splitTiles);
+        } else if (noise < 0.2) {
             return GroundTileDictionary.getTile(GroundTileDictionary.SAND, splitTiles);
-        } else if (noise < 0.1) {
-            return GroundTileDictionary.getTile(GroundTileDictionary.LIGHT_GRASS, splitTiles);
         } else if (noise < 0.3) {
+            return GroundTileDictionary.getTile(GroundTileDictionary.LIGHT_GRASS, splitTiles);
+        } else if (noise < 0.4) {
             return GroundTileDictionary.getTile(GroundTileDictionary.DARK_GRASS, splitTiles);
         } else if (noise < 0.5) {
             return GroundTileDictionary.getTile(GroundTileDictionary.DIRT, splitTiles);
