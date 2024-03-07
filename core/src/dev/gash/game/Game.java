@@ -66,8 +66,7 @@ public class Game extends ApplicationAdapter {
 
 		ScreenUtils.clear(Color.valueOf("#4f42b5 "));
 		camera.update();
-		mapRenderer.setView(camera);
-		mapRenderer.render();
+		stage.draw();
 	}
 
 	@Override
